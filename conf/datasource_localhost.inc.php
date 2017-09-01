@@ -9,6 +9,7 @@ $conf['datasources']['localhost'] = array(
 		'global_query_review' => 'fact',
 		'global_query_review_history' => 'dimension'
 	),
-	'source_type' => 'slow_query_log'
+	'source_type' => 'slow_query_log',
+	'ssl_ca' => null
 );
 
