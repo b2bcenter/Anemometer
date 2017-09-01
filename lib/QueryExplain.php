@@ -185,6 +185,7 @@ class QueryExplain {
         try {
             $this->mysqli = new mysqli();
             $this->mysqli->options(MYSQLI_OPT_CONNECT_TIMEOUT, self::$CONNECT_TIMEOUT);
+            $this->mysqli->ssl_set(null, null, $ds['ssl_ca'], null, null);
             $this->mysqli->real_connect(
                 $this->conf['host'],
                 $this->conf['user'],

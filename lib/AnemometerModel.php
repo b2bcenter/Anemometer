@@ -278,6 +278,7 @@ class AnemometerModel {
         //print "{$this->datasource_name}<br>";
         //print_r($ds);
         $this->mysqli = new mysqli();
+        $this->mysqli->ssl_set(null, null, $ds['ssl_ca'], null, null);
         $this->mysqli->real_connect($ds['host'], $ds['user'], $ds['password'], $ds['db'], $ds['port']);
         if ($this->mysqli->connect_errno) {
             throw new Exception($this->mysqli->connect_error);

@@ -200,6 +200,7 @@ class MySQLTableReport {
         $ds = $this->datasource;
         $this->mysqli = new mysqli();
         $this->mysqli->options(MYSQLI_OPT_CONNECT_TIMEOUT, self::$CONNECT_TIMEOUT);
+        $this->mysqli->ssl_set(null, null, $ds['ssl_ca'], null, null);
         $this->mysqli->real_connect($ds['host'], $ds['user'], $ds['password'], $ds['db'], $ds['port']);
 
         if ($this->mysqli->connect_errno) {
