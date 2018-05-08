@@ -8,6 +8,15 @@
  */
 class Loader
 {
+    /**
+     * @var string
+     */
+    private $base_dir;
+
+    public function __construct(string $base_dir)
+    {
+        $this->base_dir = $base_dir;
+    }
 
     /**
      * Finds and displays the given view, and makes the values in $data available to it.
@@ -34,7 +43,7 @@ class Loader
         }
 
         // find and include the view
-        $view_name = "views/{$view_name}.php";
+        $view_name = $this->base_dir."/views/{$view_name}.php";
         if (file_exists($view_name))
         {
             include $view_name;
@@ -46,5 +55,3 @@ class Loader
     }
 
 }
-
-?>

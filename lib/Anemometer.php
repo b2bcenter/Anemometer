@@ -26,15 +26,21 @@ class Anemometer {
     private $header_printed = false;
     private $exception_select_fields = array('checksum','sample','DIGEST'); // column names which appear in both fact and dimension tables
     private $timezone_offset;
+    /**
+     * @var Loader
+     */
+    private $loader;
 
     /**
      * Constructor.  Pass in the global configuration object
      *
-     * @param type $conf
+     * @param array $conf
+     * @param Loader $loader
+     * @throws Exception
      */
-    function __construct($conf)
+    function __construct($conf, Loader $loader)
     {
-        $this->load = new Loader();
+        $this->loader = $loader;
         if (empty($conf))
         {
             return;
@@ -744,5 +750,3 @@ class Anemometer {
         return $dec;
     }
 }
-
-?>
