@@ -1,7 +1,5 @@
 <?php
 
-require "QueryExplain.php";
-
 /**
  * class AnemometerModel
  *
@@ -451,5 +449,3 @@ class AnemometerModel {
         return null;
     }
 }
-
-?>

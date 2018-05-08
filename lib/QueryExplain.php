@@ -42,9 +42,6 @@
  *
  */
 
-require __DIR__ . '/QueryTableParser.php';
-require_once __DIR__ . '/QueryRewrite.php';
-
 class QueryExplain {
 
     private $get_connection_func;
@@ -308,5 +305,3 @@ class QueryExplain {
     }
 
 }
-
-?>

@@ -1078,5 +1078,3 @@ class MySQLTableReport {
         return join("&", $params);
     }
 }
-
-?>

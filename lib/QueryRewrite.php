@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class QueryRewrite
+ */
 class QueryRewrite{
     public $sql         = null;
     public $type        = 0;

@@ -1,7 +1,4 @@
 <?php
-require "Loader.php";
-require "AnemometerModel.php";
-require "MySQLTableReport.php";
 
 /**
  * class Anemometer
