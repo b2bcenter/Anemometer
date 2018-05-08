@@ -145,7 +145,7 @@ class Anemometer {
             $data['callbacks'] =  $this->conf['reports'][$source_type]['callbacks'][$output];
         }
 
-        $this->load->view($output_types[$output], $data);
+        $this->loader->view($output_types[$output], $data);
     }
 
 
@@ -163,7 +163,7 @@ class Anemometer {
         $data = $this->setup_data_for_graph_search();
 
         // display the page
-        $this->load->view("graph_search", $data);
+        $this->loader->view("graph_search", $data);
         $this->footer();
     }
 
@@ -253,14 +253,14 @@ class Anemometer {
         $this->header();
 
         // for multiple datasources, choose one
-        $this->load->view('index', array('datasources' => $datasources, 'datasource' => get_var('datasource')));
+        $this->loader->view('index', array('datasources' => $datasources, 'datasource' => get_var('datasource')));
         $this->footer();
     }
 
     public function noconfig()
     {
         $this->header();
-        $this->load->view("noconfig");
+        $this->loader->view("noconfig");
         $this->footer();
     }
 
@@ -347,7 +347,7 @@ class Anemometer {
         // display progress bar and next / back
         // show explain
 
-        $this->load->view('samples', array(
+        $this->loader->view('samples', array(
             'datasource' => $datasource,
             'checksum' => $checksum,
             'start' => $start,
@@ -508,7 +508,7 @@ class Anemometer {
         {
             $view = "show_query_perf_schema";
         }
-        $this->load->view($view, $data);
+        $this->loader->view($view, $data);
 
         // Show the history for this query
         // just set some form fields and call report
@@ -588,10 +588,10 @@ class Anemometer {
         switch ($source_type)
         {
             case 'performance_schema':
-                $this->load->view("report-performance_schema", $data);
+                $this->loader->view("report-performance_schema", $data);
                 break;
             default:
-            $this->load->view("report", $data);
+            $this->loader->view("report", $data);
             break;
         }
     }
@@ -600,7 +600,7 @@ class Anemometer {
      * display the global web application footer
      */
     private function footer() {
-        $this->load->view("footer");
+        $this->loader->view("footer");
     }
 
     /**
@@ -642,8 +642,8 @@ class Anemometer {
         }
 
         if (!get_var('noheader')) {
-            $this->load->view("header");
-            $this->load->view("navbar", array( 'datasources' => $datasources, 'datasource' => $datasource, 'source_type' => $source_type ));
+            $this->loader->view("header");
+            $this->loader->view("navbar", array( 'datasources' => $datasources, 'datasource' => $datasource, 'source_type' => $source_type ));
         }
 
         $this->header_printed = true;
