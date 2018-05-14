@@ -110,6 +110,7 @@ class Anemometer {
         // process the form data, and get the query result
         $data = array();
         $data['datasource'] = get_var('datasource');
+        $data['result'] = [];
         try
         {
             $data['sql'] = $this->report_obj->query();
