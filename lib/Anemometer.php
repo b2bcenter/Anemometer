@@ -27,17 +27,20 @@ class Anemometer {
      * @var Loader
      */
     private $loader;
+    private $reviewUser;
 
     /**
      * Constructor.  Pass in the global configuration object
      *
      * @param array $conf
      * @param Loader $loader
+     * @param string $reviewUser
      * @throws Exception
      */
-    function __construct($conf, Loader $loader)
+    function __construct($conf, Loader $loader, $reviewUser)
     {
         $this->loader = $loader;
+        $this->reviewUser = $reviewUser;
         if (empty($conf))
         {
             return;
@@ -430,7 +433,7 @@ class Anemometer {
         // review info
         $data['review_types'] = $this->data_model->get_review_types();
         $data['reviewers'] = $this->data_model->get_reviewers();
-        $data['current_auth_user'] = $this->get_auth_user();
+        $data['current_auth_user'] = $this->reviewUser;
 
 
         $data['show_samples'] = true;
@@ -540,12 +543,9 @@ class Anemometer {
 
         $fields_to_change = array();
         if ($submit == 'Review' || $submit == 'Review and Update Comments') {
-            $fields_to_change['reviewed_by'] = get_var('reviewed_by');
+            $fields_to_change['reviewed_by'] = $this->reviewUser; //get_var('reviewed_by');
             $fields_to_change['reviewed_on'] = date('Y-m-d H:i:s');
             $fields_to_change['reviewed_status'] = get_var('reviewed_status');
-            session_start();
-            $_SESSION['current_review_user'] = get_var('reviewed_by');
-            session_write_close();
         }
 
         if ($submit == 'Review and Update Comments' || $submit == 'Update Comments') {
@@ -602,26 +602,6 @@ class Anemometer {
      */
     private function footer() {
         $this->loader->view("footer");
-    }
-
-    /**
-     * return the current username.  First from any .htaccess login if set, or
-     * from the session if possible.
-     */
-    private function get_auth_user() {
-        session_start();
-        if (array_key_exists('PHP_AUTH_USER', $_SERVER))
-        {
-            return $_SERVER['PHP_AUTH_USER'];
-
-        }
-        else if (array_key_exists('current_review_user', $_SESSION))
-        {
-            return $_SESSION['current_review_user'];
-        }
-
-        session_write_close();
-        return null;
     }
 
     /**
