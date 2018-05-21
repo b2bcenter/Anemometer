@@ -45,8 +45,6 @@ foreach ($series as $col)
     if (is_numeric($col_label)) {
         $col_label = dec2hex($col_label);
     }
-	$finalfingdata[] = array( 'label' => $col_label, 'data' => $wtfdata[$col]);
+	$finalfingdata[] = array( 'label' => $col_label, 'data' => $wtfdata[$col] ?? []);
 }
 print json_encode($finalfingdata);
-
-?>
