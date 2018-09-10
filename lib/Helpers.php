@@ -146,3 +146,7 @@ function trim_left_zeros($str)
 	}
 	return $str;
 }
+
+function html_esc($string): string {
+    return htmlspecialchars($string, ENT_QUOTES, 'utf-8');
+}

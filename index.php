@@ -40,7 +40,7 @@ if (is_callable(array($controller, $action )))
 }
 else
 {
-	print "Invalid action ($action)";
+	print 'Invalid action ('.html_esc($action).')';
 }
 
 ?>
